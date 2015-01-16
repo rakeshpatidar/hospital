@@ -1,0 +1,58 @@
+      <body class="login-page">
+        <!-- Start #login -->
+        <div id="login" class="animated bounceIn">
+            <img id="logo" src="/assets/logo.png" alt="appstart Logo">
+            <!-- Start .login-wrapper -->
+            <div class="login-wrapper">
+                <ul id="myTab" class="nav nav-tabs nav-justified bn">
+                    <li>
+                        <a href="#log-in" data-toggle="tab">Login</a>
+                    </li>
+                </ul>
+                <div id="myTabContent" class="tab-content bn">
+                    <div class="tab-pane fade active in" id="log-in">
+                        
+                        <div class="seperator">
+                            <strong></strong>
+                        </div>
+                      <%= form_for(resource, as: resource_name, class: "form-horizontal mt20", url: session_path(resource_name)) do |f| %>
+ <div class="form-group">
+  <div class="col-lg-12">
+  <%= f.email_field :email, autofocus: true, :placeholder => "Your email ...", class: 'form-control left-icon' %>
+  <i class="im-user s16 left-input-icon"></i>
+   </div>
+ </div>
+  <div class="form-group">
+                                <div class="col-lg-12">
+                                    <%= f.password_field :password, autocomplete: "off", :placeholder => "Your password", class: 'form-control left-icon' %>
+                                    <i class="im-lock s16 left-input-icon"></i>
+                                    <span class="help-block"><a href="#"><small>Forgout password ?</small></a></span> 
+                                </div>
+                            </div>
+ <div class="form-group">
+ <% if devise_mapping.rememberable? -%>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-8">
+                                    <!-- col-lg-12 start here -->
+                                    <label class="checkbox">
+<%= f.check_box :remember_me %>Remember me ?
+                                    </label>
+                                </div>
+ <% end -%>                               
+                                <!-- col-lg-12 end here -->
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 mb25">
+                                    <!-- col-lg-12 start here -->
+                                    <%= f.submit "Log in", class: 'btn btn-default pull-right' %>
+                                </div>
+                                <!-- col-lg-12 end here -->
+                            </div>
+
+
+<% end %>
+
+<%= render "devise/shared/links" %>
+                    </div>
+                </div>
+            </div>
+            <!-- End #.login-wrapper -->
+        </div>
+

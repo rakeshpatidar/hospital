@@ -1,0 +1,101 @@
+<%= render 'layouts/head_content' %>
+                         <!-- col-lg-6 end here -->
+                        <div class="col-lg-6 col-md-6">
+                            <!-- col-lg-6 start here -->
+                            <div class="panel panel-default plain toggle panelClose panelRefresh" id="jst_2">
+                                <!-- Start .panel -->
+                                <div class="panel-heading white-bg">
+                                    <h4 class="panel-title">List of doctor</h4>
+                                <div class="panel-controls"><a class="panel-refresh" href="#"><i class="im-spinner12"></i></a><a class="toggle panel-minimize" href="#"><i class="im-minus"></i></a><a class="panel-close" href="#"><i class="im-close"></i></a></div></div>
+                                <div class="panel-body">
+                                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: 100%; height: auto;"><div class="table-responsive" style="overflow: hidden; width: 100%; height: auto;"><table class="table table-hover">
+                                         <thead>
+                                            <tr>
+                                                <th class="per5">
+                                                    No.
+                                                </th>
+                                                <th class="per40">Name</th>
+                                                <th class="per40">E-mail</th>
+                                                <th class="per15">Employee ID</th>
+                                                <th class="per15">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                       <% $i = 1 %>
+                                        <% @doctors.each do |doctor| %>
+                                            <tr>
+                                                <td>
+                                                    <%= $i %>
+                                                </td>
+                                                <td><%= doctor.name %></td>
+                                                <td><%= doctor.email %></td>
+                                                <td><%= doctor.emp_id %></td>
+                                                <td></td>
+                                            </tr>
+                                             <% $i = $i+1 %>
+                                            <% end %>
+                                             </tbody>
+
+                                    </table>
+                                    <hr/>
+                                   
+                                    </div><div class="slimScrollBar ui-draggable" style="background: none repeat scroll 0% 0% rgb(255, 255, 255); height: 5px; position: absolute; bottom: 3px; opacity: 0.4; display: none; border-radius: 5px 5px 5px 5px; z-index: 99; width: 447px; left: 0px;"></div><div class="slimScrollRail" style="width: 100%; height: 5px; position: absolute; bottom: 3px; display: none; border-radius: 5px 5px 5px 5px; background: none repeat scroll 0% 0% rgb(51, 51, 51); opacity: 1; z-index: 90;"></div></div>
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                        </div>
+                        <!-- col-lg-6 end here -->
+                        <div class="col-lg-6 col-md-6">
+                            <!-- col-lg-6 start here -->
+                            <div class="panel panel-default plain toggle panelClose panelRefresh" id="jst_2">
+                                <!-- Start .panel -->
+                                <div class="panel-heading white-bg">
+                                    <h4 class="panel-title">List of Paitent</h4>
+                                <div class="panel-controls"><a class="panel-refresh" href="#"><i class="im-spinner12"></i></a><a class="toggle panel-minimize" href="#"><i class="im-minus"></i></a><a class="panel-close" href="#"><i class="im-close"></i></a></div></div>
+                                <div class="panel-body">
+                                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: 100%; height: auto;"><div class="table-responsive" style="overflow: hidden; width: 100%; height: auto;"><table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="per5">
+                                                    No.
+                                                </th>
+                                                <th class="per40">Name</th>
+                                                <th class="per40">Contact</th>
+                                                <th class="per15">Billing ID</th>
+                                                <th class="per15">Attending Physician</th>
+                                                <th class="per15">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                         <% $j = 1 %>
+                                        <% @patients.each do |patient| %>
+                                            <tr>
+                                                <td>
+                                                    <%= $j %>
+                                                </td>
+                                                <td><%= patient.name %></td>
+                                                <td><%= patient.contact_no %></td>
+                                                <td><%= patient.billing_id %></td>
+                                                <td><%= patient.physician %></td>
+                                                <td><%= link_to 'View', patient, :class => 'btn btn-default btn-xs mr5 mb10', :data => { :no_turbolink => true} %></td>
+                                            </tr>
+                                             <% $j = $j+1 %>
+                                            <% end %>
+                                        </tbody>
+                                    </table>
+                                    <hr/>
+                                    <%= link_to 'View all', {controller: "patients", action: "index"}, class: 'btn btn-success mr5 mb10', :data => { :no_turbolink => true} %>
+                                    <%= link_to "Add new", {controller: "patients", action: "new"}, class: "btn btn-success mr5 mb10", :data => { :no_turbolink => true} %>
+                                    </div><div class="slimScrollBar ui-draggable" style="background: none repeat scroll 0% 0% rgb(255, 255, 255); height: 5px; position: absolute; bottom: 3px; opacity: 0.4; display: none; border-radius: 5px 5px 5px 5px; z-index: 99; width: 447px; left: 0px;"></div><div class="slimScrollRail" style="width: 100%; height: 5px; position: absolute; bottom: 3px; display: none; border-radius: 5px 5px 5px 5px; background: none repeat scroll 0% 0% rgb(51, 51, 51); opacity: 1; z-index: 90;"></div></div>
+                                </div>
+                            </div>
+                            <!-- End .panel -->
+                        </div>
+                        <!-- col-lg-6 end here -->
+                    </div>
+                       <%= render 'layouts/footer_content' %>
+
+
+
+
+

@@ -1,0 +1,11 @@
+<%= render 'layouts/head_content' %>
+ <div class="panel panel-default plain toggle panelMove panelClose panelRefresh">
+ <div class="panel-heading">
+    <h2 class="panel-title">Add New Patient</h2>
+ </div>
+   <div class="panel-body pb0">
+    <%= render 'form' %>
+   </div>
+ </div>
+<%= link_to 'Back', patients_path, :data => {:no_turbolink => true } %>
+<%= render 'layouts/footer_content' %>

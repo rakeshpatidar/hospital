@@ -1,0 +1,118 @@
+<body class="ovh">
+        <div id="preloader">
+            <div id="preloader-logo">
+                <img src="/assets/preloader-logo.png" alt="Logo">
+            </div>
+            <div id="preloader-icon">
+                <i class="im-spinner icon-spin"></i>
+            </div>
+        </div>
+        <!-- Start #header -->
+        <div id="header">
+            <div class="container-fluid">
+                <div class="navbar">
+                    <div class="navbar-header">
+                        <!-- Show navigation toggle on phones -->
+                        <button id="showNav" class="navbar-toggle" type="button">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- Show logo for large screens and laptops -->
+                        <span class="navbar-brand visible-lg visible-md">
+                            <img src="/assets/logo.png" alt="Jump start">
+                        </span>
+                        <!-- Show logo for small screens -->
+                        <span class="navbar-brand hidden-lg hidden-md hidden-xs">
+                            <img src="/assets/logo-sm.png" alt="Jump start">
+                        </span>
+                    </div>
+                    <nav id="top-nav" class="navbar-no-collapse" role="navigation">
+                        <!-- navbar search form -->
+                       
+                        <!-- Navbar nav -->
+                        <ul class="nav navbar-nav pull-right">
+                            
+                           
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown">
+                                    <img class="avatar" src="/assets/avatars/1.jpg" width="36" height="36" alt="Jonh Doe"> <span class="avatar-name"><%= current_admin.email %></span>
+                                    <span class="caret ml5"></span>
+                                </a>
+                                <ul class="dropdown-menu right" role="menu">
+                                    <li><a href="#"><i class="im-user"></i> Profile</a>
+                                    </li>
+                                    <li><a href="#"><i class="im-cog2"></i> Settings</a>
+                                    </li>
+                                    <li><a href="#"><i class="im-question3"></i> Help</a>
+                                    </li>
+                                    <li>
+                                    <%= link_to "Logout", destroy_admin_session_path, :method => :delete %>
+                                    </li>
+                                </ul>
+                            </li>
+                           
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- End #header -->
+        <!-- Start #sidebar -->
+        <aside id="sidebar">
+            <!-- Start .sidebar-inner -->
+            <div class="sidebar-inner">
+                <!-- Start .toggle-sidebar -->
+                <div class="toggle-sidebar">
+                    <a href="#"><i class="im-arrow7"></i></a>
+                </div>
+                <!-- End .toggle-sidebar -->
+                <!-- Start .option-buttons -->
+                <div class="option-buttons">
+                    <div class="option-buttons-inner">
+                      <h5 class="sidebar-title">Navigation</h5>
+                    </div>
+                </div>
+                <!-- End .option-buttons -->
+                <!-- Start .sidebar-scrollarea -->
+                <div class="sidebar-scrollarea">
+                    <ul id="sideNav" class="nav nav-pills nav-stacked">
+                        <li> <%= link_to dashboards_path, :data =>{ :no_turbolink => true } do %>
+                            <i class="im-screen"></i><span class="txt">Dashboard</span>
+                         <% end %>   
+                        </li>
+                        <li> <%= link_to new_hospitaladmin_registration_path, :data =>{ :no_turbolink => true } do %>
+                            <i class="fa fa-medkit"></i><span class="txt">Add Hospital</span>
+                         <% end %>   
+                        </li>
+                        
+                     
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <!-- End .sidebar-scrollarea -->
+            </div>
+            <!-- End .sidebar-inner -->
+        </aside>
+        <!-- End #sidebar -->
+      
+        <!-- End .sidebar-inner -->
+        </aside>
+        <!-- Start #right-sidebar -->
+        <!-- Start #content -->
+        <div id="content">
+            <!-- Start .content-wrapper -->
+            <div class="content-wrapper">
+                <div id="page-heading" class="page-header">
+                    <h2><i class="icon im-home2"></i> Dashboard</h2>
+                    <!-- Start .bredcrumb -->
+                    <ul id="crumb" class="breadcrumb">
+                    </ul>
+                    <!-- End .breadcrumb -->
+                </div>
+                <!-- Start .content-inner -->
+                <div class="content-inner">
+                    <div class="row">
+                        <!-- Start .row -->
+                        <div class="col-lg-12">

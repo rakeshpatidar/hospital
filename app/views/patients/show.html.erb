@@ -1,0 +1,35 @@
+<%= render 'layouts/head_content' %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @patient.name %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @patient.gender %>
+</p>
+
+<p>
+  <strong>Date-of-birth:</strong>
+  <%= @patient.date_of_birth %>
+</p>
+
+<p>
+  <strong>Contact-no:</strong>
+  <%= @patient.contact_no %>
+</p>
+
+<p>
+  <strong>Billing ID:</strong>
+  <%= @patient.billing_id %>
+</p>
+<p>
+  <strong>Physician:</strong>
+  <%= @patient.physician %>
+</p>
+
+<%= link_to 'Edit', edit_patient_path(@patient) %> |
+<%= link_to 'Back', patients_path %>
+<%= render 'layouts/footer_content' %>

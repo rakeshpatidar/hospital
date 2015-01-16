@@ -1,0 +1,12 @@
+<h1>Welcome#index</h1>
+<% if admin_signed_in? %>
+<% redirect_to dashboards %>
+<h3>you have succesfully signed in</h3>
+<%= link_to "Sign Out", destroy_admin_session_path, :method => :delete %>
+
+<% else %>
+
+<h1> welcom to rails community</h1>
+<%= link_to "Sign In", new_admin_session_path, :method => :get %>
+
+<% end %>

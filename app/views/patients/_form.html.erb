@@ -1,0 +1,68 @@
+<%= form_for(@patient) do |f| %>
+  <% if @patient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+
+      <ul>
+      <% @patient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+                                    <div class="form-horizontal group-border stripped">
+                                        
+                                        <!-- End .form-group  -->
+                                        <div class="form-group">
+                                            <%= f.label :name, class:'col-sm-2 control-label' %>
+                                            <div class="col-sm-10">
+                                                <%= f.text_field :name, class:'form-control' %>
+                                            </div>
+                                        </div>
+                                        <!-- End .form-group  -->
+                                        <div class="form-group">
+                                            <%= f.label :gender, class:'col-sm-2 control-label' %>
+                                            <div class="col-sm-10">
+                                               <%= f.text_field :gender, class:'form-control' %>
+                                            </div>
+                                        </div>
+                                        <!-- End .form-group  -->
+                                        <div class="form-group">
+                                            <%= f.label :date_of_birth, class:'col-sm-2 control-label' %>
+                                            <div class="col-sm-10">
+                                               <%= f.text_field :date_of_birth, class:'form-control' %>
+                                            </div>
+                                        </div>
+                                         <!-- End .form-group  -->
+                                        <div class="form-group">
+                                            <%= f.label :contact_no, class:'col-sm-2 control-label' %>
+                                            <div class="col-sm-10">
+                                               <%= f.text_field :contact_no, class:'form-control' %>
+                                            </div>
+                                        </div>
+                                         <!-- End .form-group  -->
+                                        <div class="form-group">
+                                            <%= f.label :billing_id, class:'col-sm-2 control-label' %>
+                                            <div class="col-sm-10">
+                                               <%= f.text_field :billing_id, class:'form-control' %>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <%= f.label :physician, class:'col-sm-2 control-label' %>
+                                            <div class="col-sm-10">
+                                               <%= f.text_field :physician, class:'form-control' %>
+                                            </div>
+                                        </div>
+                                         <!-- End .form-group  -->
+                                        <div class="form-group">
+                                            <%= f.submit %>
+                                        </div>
+                                       
+                                     
+                                        
+                                    </div>
+                                
+
+<% end %>

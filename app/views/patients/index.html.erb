@@ -1,0 +1,63 @@
+<%= render 'layouts/head_content' %>
+<p id="notice"><%= notice %></p>
+  <div class="panel panel-default plain toggle panelClose panelRefresh">
+                                <!-- Start .panel -->
+                                <div class="panel-heading white-bg">
+                                    <h2 class="panel-title">Listing Patients</h2>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th class="per3">
+                                                    #
+                                                </th>
+                                                <th class="per15">Name</th>
+                                                <th class="per5">Gender</th>
+                                                <th class="per15">Date-of-birth</th>
+                                                <th class="per15">Contact No</th>
+                                                <th class="per20">Billing ID</th>
+                                                 <th class="per20">Attending Physician</th>
+                                               <th colspan="3"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                         <% 
+                                         $count = 1
+                                         @patients.each do |patient| %>
+                                            <tr>
+                                                <td>
+                                                    <%= $count %>
+                                                </td>
+                                                       <td><%= patient.name %></td>
+                                                        <td><%= patient.gender %></td>
+                                                        <td><%= patient.date_of_birth %></td>
+                                                        <td><%= patient.contact_no %></td>
+                                                        <td><%= patient.billing_id %></td>
+                                                        <td><%= patient.physician %></td>
+                                                <td><%= link_to patient, :data => {:no_turbolink => true } do %>
+                                                  <i class="fa fa-eye fa-5"></i>
+                                                 <% end %> 
+                                                </td>
+                                                <td>
+                                                <%= link_to edit_patient_path(patient), :data => { :no_turbolink => true } do %>
+                                                  <i class="fa fa-pencil-square fa-5"></i>
+                                                <% end %>
+                                                </td>
+                                                <td><%= link_to patient, method: :delete, data: { confirm: 'Are you sure?', no_turbolink: true } do %>
+                                                    <i class="fa fa-trash-o fa-5"></i>
+                                                <% end %>
+                                                </td>
+                                            </tr>
+                                           <% 
+                                           $count = $count+1 
+                                           end %> 
+                                        </tbody>
+                                    </table>
+                                    <%= link_to new_patient_path, :data => { :no_turbolink => true} do %>
+                                     <button class="btn btn-success mr5 mb10" type="button">New Patient</button>
+                                    <% end %>
+                                </div>
+                            </div>
+           
+<%= render 'layouts/footer_content' %>
