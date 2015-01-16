@@ -37,7 +37,7 @@
                            
                             <li class="dropdown">
                                 <a href="#" data-toggle="dropdown">
-                                    <img class="avatar" src="/assets/avatars/1.jpg" width="36" height="36" alt="Jonh Doe"> <span class="avatar-name"></span>
+                                    <img class="avatar" src="/assets/avatars/1.jpg" width="36" height="36" alt="Jonh Doe"> <span class="avatar-name"><%= current_admin.email %></span>
                                     <span class="caret ml5"></span>
                                 </a>
                                 <ul class="dropdown-menu right" role="menu">
@@ -48,7 +48,7 @@
                                     <li><a href="#"><i class="im-question3"></i> Help</a>
                                     </li>
                                     <li>
-                                    
+                                    <%= link_to "Logout", destroy_admin_session_path, :method => :delete %>
                                     </li>
                                 </ul>
                             </li>
@@ -78,7 +78,14 @@
                 <!-- Start .sidebar-scrollarea -->
                 <div class="sidebar-scrollarea">
                     <ul id="sideNav" class="nav nav-pills nav-stacked">
-                       
+                        <li> <%= link_to dashboards_path, :data =>{ :no_turbolink => true } do %>
+                            <i class="im-screen"></i><span class="txt">Dashboard</span>
+                         <% end %>   
+                        </li>
+                        <li> <%= link_to new_hospitaladmin_registration_path, :data =>{ :no_turbolink => true } do %>
+                            <i class="fa fa-medkit"></i><span class="txt">Add Hospital</span>
+                         <% end %>   
+                        </li>
                         
                      
                     </ul>
