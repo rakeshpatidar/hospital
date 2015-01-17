@@ -1,6 +1,6 @@
 class HospitaladminController < ApplicationController
   def index
-  	@doctors = Doctor.all
+  	@doctors = current_hospitaladmin.doctors.all
   	@patients = current_hospitaladmin.patients.all
   end
 end

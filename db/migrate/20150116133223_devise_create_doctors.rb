@@ -6,7 +6,7 @@ class DeviseCreateDoctors < ActiveRecord::Migration
       t.string :encrypted_password, null: false, default: ""
       t.string :name
       t.string :emp_id
-      t.string :hospital_id
+      t.integer :hospitaladmin_id
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
 
   #devise_for :doctors
-  devise_for :doctors
+  devise_for :doctors, controllers: { registrations: "doctors/registrations" }
   resources :patients
 
   get 'welcome/index'
