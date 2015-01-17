@@ -16,6 +16,7 @@ class Doctors::RegistrationsController < Devise::RegistrationsController
     @doctor.hospitaladmin_id = current_hospitaladmin.id
     if @doctor.errors.blank?
        @doctor.save
+    UserNotifier.send_doctor_email(@doctor).deliver   
     redirect_to new_doctor_registration_path
     else
       redirect_to new_doctor_registration_path
