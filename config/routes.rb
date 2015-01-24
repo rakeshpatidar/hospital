@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   
 
   #devise_for :doctors
-  devise_for :doctors, controllers: { registrations: "doctors/registrations" }
+  devise_for :doctors, controllers: { registrations: "doctors/registrations", sessions: "doctors/sessions"}
+
+
+resources :doctors
+
   resources :patients
 
   get 'welcome/index'
@@ -11,6 +15,8 @@ Rails.application.routes.draw do
   devise_for :admins
   resources :dashboards, only: [:index]
   resources :hospitaladmin
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
