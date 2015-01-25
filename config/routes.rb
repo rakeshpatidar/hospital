@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
 
+  resources :diseasecodes
+
   #devise_for :doctors
   devise_for :doctors, controllers: { registrations: "doctors/registrations", sessions: "doctors/sessions"}
 

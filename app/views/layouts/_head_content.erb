@@ -99,6 +99,21 @@
                             </ul>
                         </li>
                         <li class="hasSub">
+                            <a href="#" class="notExpand"><i class="im-arrow-down2 sideNav-arrow rotate0"></i><i class="fa fa-wheelchair"></i> <span class="txt">Disease</span></a>
+                            <ul class="sub" style="display: none;">
+                                <li>
+                                    <%= link_to diseasecodes_path, data: { no_turbolink: true } do %>
+                                    <i class="im-arrow-right3"></i><span class="txt">All Disease</span>
+                                    <% end %>    
+                                </li>
+                                <li>
+                                    <%= link_to new_diseasecode_path, data: { no_turbolink: true } do %>
+                                    <i class="im-arrow-right3"></i><span class="txt">Add Disease</span>
+                                    <% end %>    
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="hasSub">
                             <a href="#" class="notExpand"><i class="im-arrow-down2 sideNav-arrow rotate0"></i><i class="fa fa-wheelchair"></i> <span class="txt">Patient</span></a>
                             <ul class="sub" style="display: none;">
                                 <li>

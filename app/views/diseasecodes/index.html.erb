@@ -1,0 +1,34 @@
+<%= render 'layouts/head_content' %>
+<p id="notice"><%= notice %></p>
+
+<h1>Disease Code</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Disease</th>
+      <th>Code</th>
+      <th>Hospitaladmin</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @diseasecodes.each do |diseasecode| %>
+      <tr>
+        <td><%= diseasecode.disease %></td>
+        <td><%= diseasecode.code %></td>
+        <td><%= diseasecode.hospitaladmin_id %></td>
+        <td><%= diseasecode.description %></td>
+        <td><%= link_to 'Edit', edit_diseasecode_path(diseasecode), data: { no_turbolink: true } %></td>
+        <td><%= link_to 'Destroy', diseasecode, method: :delete, data: { confirm: 'Are you sure?', no_turbolink: true } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Diseasecode', new_diseasecode_path, data: { no_turbolink: true } %>
+<%= render 'layouts/footer_content' %>

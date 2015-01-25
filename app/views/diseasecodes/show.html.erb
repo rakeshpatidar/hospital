@@ -1,0 +1,26 @@
+<%= render 'layouts/head_content' %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Disease:</strong>
+  <%= @diseasecode.disease %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @diseasecode.code %>
+</p>
+
+<p>
+  <strong>Hospitaladmin:</strong>
+  <%= @diseasecode.hospitaladmin_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @diseasecode.description %>
+</p>
+
+<%= link_to 'Edit', edit_diseasecode_path(@diseasecode) %> |
+<%= link_to 'Back', diseasecodes_path %>
+<%= render 'layouts/footer_content' %>

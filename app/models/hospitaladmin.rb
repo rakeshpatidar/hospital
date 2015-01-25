@@ -4,5 +4,6 @@ class Hospitaladmin < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :doctors
-  has_many :patients       
+  has_many :patients
+  has_many :diseasecodes       
 end
