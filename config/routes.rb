@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
 
-  get 'api/all'
+  get 'api/patient'
   get 'api/disease'
 
   resources :diseasecodes
