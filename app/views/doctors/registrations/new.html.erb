@@ -1,6 +1,6 @@
 <%= render 'layouts/head_content' %>
 <h2>Add Doctor</h2>
-
+<% if hospitaladmin_signed_in? %>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
@@ -35,6 +35,7 @@
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
+<% end %>
 <% end %>
 <%= render 'layouts/footer_content' %>
 

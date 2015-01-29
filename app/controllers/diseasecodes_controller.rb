@@ -1,4 +1,5 @@
 class DiseasecodesController < ApplicationController
+  before_action :authenticate_hospitaladmin!
   before_action :set_diseasecode, only: [:show, :edit, :update, :destroy]
 
   respond_to :html, :json

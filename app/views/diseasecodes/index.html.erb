@@ -1,34 +1,54 @@
 <%= render 'layouts/head_content' %>
 <p id="notice"><%= notice %></p>
-
-<h1>Disease Code</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Disease</th>
-      <th>Code</th>
-      <th>Hospitaladmin</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @diseasecodes.each do |diseasecode| %>
-      <tr>
-        <td><%= diseasecode.disease %></td>
-        <td><%= diseasecode.code %></td>
-        <td><%= diseasecode.hospitaladmin_id %></td>
-        <td><%= diseasecode.description %></td>
-        <td><%= link_to 'Edit', edit_diseasecode_path(diseasecode), data: { no_turbolink: true } %></td>
-        <td><%= link_to 'Destroy', diseasecode, method: :delete, data: { confirm: 'Are you sure?', no_turbolink: true } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Diseasecode', new_diseasecode_path, data: { no_turbolink: true } %>
+  <div class="panel panel-default plain toggle panelClose panelRefresh">
+                                <!-- Start .panel -->
+                                <div class="panel-heading white-bg">
+                                    <h2 class="panel-title">Listing Disease</h2>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th class="per5">
+                                                    #
+                                                </th>
+                                                <th class="per25">Disease</th>
+                                                <th class="per20">Code</th>
+                                                <th class="per40">Remark</th>
+                                               <th colspan="10"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                         <% 
+                                         $count = 1
+                                         @diseasecodes.each do |diseasecode| %>
+                                            <tr>
+                                                <td>
+                                                    <%= $count %>
+                                                </td>
+                                                       <td><%= diseasecode.disease %></td>
+                                                        <td><%= diseasecode.code %></td>
+                                                        <td><%= diseasecode.description %></td>
+                                                
+                                                <td>
+                                                <%= link_to edit_diseasecode_path(diseasecode), :data => { :no_turbolink => true } do %>
+                                                  <i class="fa fa-pencil-square fa-5"></i>
+                                                <% end %>
+                                                </td>
+                                                <td><%= link_to diseasecode, method: :delete, data: { confirm: 'Are you sure?', no_turbolink: true } do %>
+                                                    <i class="fa fa-trash-o fa-5"></i>
+                                                <% end %>
+                                                </td>
+                                            </tr>
+                                           <% 
+                                           $count = $count+1 
+                                           end %> 
+                                        </tbody>
+                                    </table>
+                                    <%= link_to new_diseasecode_path, :data => { :no_turbolink => true} do %>
+                                     <button class="btn btn-success mr5 mb10" type="button">New Patient</button>
+                                    <% end %>
+                                </div>
+                            </div>
+           
 <%= render 'layouts/footer_content' %>

@@ -2,11 +2,10 @@ class Doctors::RegistrationsController < Devise::RegistrationsController
   before_action :authenticate_hospitaladmin!
 
   respond_to :html
-
   # GET /resource/sign_up
    def new
-     @doctor = Doctor.new
-     super
+    @doctor = Doctor.new
+    super
    end
 
   # POST /resource

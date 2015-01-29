@@ -1,12 +1,13 @@
 class PatientsController < ApplicationController
   before_action :authenticate_hospitaladmin!
-  before_action :set_patient, only: [:show, :edit, :update, :destroy]
+  before_action :set_patient, only: [:show, :edit, :update, :destroy, :patientlist]
 
   respond_to :html, :json
 
   def index
     @patients = current_hospitaladmin.patients.all
-    respond_with(@patients)
+    @patients1 = Patient.all
+    respond_with(@patients1)
   end
 
   def show

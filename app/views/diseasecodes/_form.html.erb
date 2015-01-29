@@ -1,29 +1,47 @@
-<%= form_for(@diseasecode) do |f| %>
-  <% if @diseasecode.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@diseasecode.errors.count, "error") %> prohibited this diseasecode from being saved:</h2>
-
-      <ul>
-      <% @diseasecode.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :disease %><br>
-    <%= f.text_field :disease %>
-  </div>
-  <div class="field">
-    <%= f.label :code %><br>
-    <%= f.text_field :code %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<div class="panel panel-success plain toggle panelMove panelClose panelRefresh" id="jst_1">
+                                <!-- Start .panel -->
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">Horizontal form</h4>
+                               </div>
+                                <div class="panel-body">
+                                    <p class="mb15">Add code and remark for the Disease</p>
+                                    <% if @diseasecode.errors.any? %>
+                                      <div class="alert alert-info">
+                                        <h2><%= pluralize(@diseasecode.errors.count, "error") %> prohibited this diseasecode from being saved:</h2>
+                                          <ul>
+                                            <% @diseasecode.errors.full_messages.each do |message| %>
+                                            <li><%= message %></li>
+                                            <% end %>
+                                          </ul>
+                                      </div>
+                                    <% end %>
+                                    
+                                   <%= form_for(@diseasecode, :html => {:class => "form-horizontal"}) do |f| %>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="inputEmail3">Disease</label>
+                                            <div class="col-sm-10">
+                                            <%= f.text_field :disease, :class => 'form-control' %>
+                                             
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="inputPassword3">Code</label>
+                                            <div class="col-sm-10">
+                                                <%= f.text_field :code, :class => 'form-control' %>
+                                            </div>
+                                        </div>
+                                         <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="inputPassword3">Remark</label>
+                                            <div class="col-sm-10">
+                                                <%= f.text_area :description, :class => 'form-control' %>
+                                            </div>
+                                        </div>
+                                     
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                            <%= f.submit :class => 'btn btn-default' %>
+                                            </div>
+                                        </div>
+                                   <% end %>
+                                </div>
+                            </div>

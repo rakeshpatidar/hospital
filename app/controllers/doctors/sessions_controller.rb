@@ -8,7 +8,7 @@ def create
       format.html { respond_with resource, :location => after_sign_in_path_for(resource) }  
       format.json {  
          return render :json => {  :success => true, 
-           :user => resource
+          
          } 
       }  
     end

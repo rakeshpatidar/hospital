@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   
 
+  get 'api/all'
+  get 'api/disease'
+
   resources :diseasecodes
 
   #devise_for :doctors

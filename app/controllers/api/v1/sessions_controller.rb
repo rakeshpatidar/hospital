@@ -1,6 +1,4 @@
-class Api::V1::SessionsController < Devise::SessionsController
-  
-  class Api::V1::SessionsController < Devise::SessionsController  
+class Api::V1::SessionsController < Devise::SessionsController  
   def create  
     respond_to do |format|  
       format.html { super }  
@@ -14,5 +12,3 @@ class Api::V1::SessionsController < Devise::SessionsController
     super  
   end  
 end 
-  
-end
