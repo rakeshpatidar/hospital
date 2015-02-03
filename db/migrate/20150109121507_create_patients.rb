@@ -7,6 +7,7 @@ class CreatePatients < ActiveRecord::Migration
       t.string :date_of_birth
       t.string :contact_no
       t.string :billing_id
+      t.integer :discharge_status
       t.string :physician
 
       t.timestamps null: false

@@ -1,18 +1,17 @@
 class PatientsController < ApplicationController
   before_action :authenticate_hospitaladmin!
-  before_action :set_patient, only: [:show, :edit, :update, :destroy, :patientlist]
+  before_action :set_patient, only: [:show, :edit, :update, :destroy, :patientlist, :discharge]
 
   respond_to :html, :json
 
   def index
-    @patients = current_hospitaladmin.patients.all
-    @patients1 = Patient.all
+    @patients = @patients = current_hospitaladmin.patients.where(:discharge_status => 0)
     respond_with(@patients1)
   end
 
   def show
+    @patient = Patient.find(params[:id])
     respond_with(@patient)
-    @article = Patient.find(params[:id])
   end
 
   def new
@@ -26,6 +25,7 @@ class PatientsController < ApplicationController
   def create
     @patient = current_hospitaladmin.patients.new(patient_params)
     @patient.hospitaladmin_id = current_hospitaladmin.id
+    @patient.discharge_status = 0
     @patient.save
     respond_with(@patient)
   end
@@ -35,12 +35,16 @@ class PatientsController < ApplicationController
     respond_with(@patient)
   end
 
+  def discharge
+    
+  end
+
   def destroy
     @patient.destroy
     respond_with(@patient)
   end
 
-  private
+  #private
     def set_patient
       @patient = Patient.find(params[:id])
     end
@@ -49,3 +53,4 @@ class PatientsController < ApplicationController
       params.require(:patient).permit(:name, :gender, :date_of_birth, :contact_no, :billing_id, :physician)
     end
 end
+#name=test&gender=male&date_of_birth=10/02/2010&contact_no=58475896&billing_id=25&physician=48

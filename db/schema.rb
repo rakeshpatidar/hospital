@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20150125195048) do
     t.string   "date_of_birth",    limit: 255
     t.string   "contact_no",       limit: 255
     t.string   "billing_id",       limit: 255
+    t.integer  "discharge_status", limit: 4
     t.string   "physician",        limit: 255
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
