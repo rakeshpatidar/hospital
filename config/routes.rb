@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   resources :diseasecodes
 
   #devise_for :doctors
-  #devise_for :doctors, controllers: { registrations: "doctors/registrations", sessions: "doctors/sessions"}
+  devise_for :doctors, controllers: { registrations: "doctors/registrations", sessions: "doctors/sessions"}
+=begin
 devise_for :doctors, :controllers => { :sessions => "api1/v1/sessions" }
 devise_scope :doctor do
   namespace :api1 do
@@ -17,6 +18,7 @@ devise_scope :doctor do
     end
   end
 end
+=end
 
 resources :doctors
 
