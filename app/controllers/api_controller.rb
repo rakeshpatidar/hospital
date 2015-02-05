@@ -10,12 +10,12 @@ class ApiController < ApplicationController
   end
   def addpatient
   	  @patient = Patient.create(params[:id])
-  	  @patient.name = params[:name]
+  	  @patient.first_name = params[:first_name]
+      @patient.last_name = params[:last_name]
+      @patient.email = params[:email]
   	  @patient.hospitaladmin_id = params[:hospitaladmin_id]
-  	  @patient.gender = params[:gender]
-  	  @patient.date_of_birth = params[:date_of_birth]
+  	  @patient.mi = params[:mi]
   	  @patient.contact_no = params[:contact_no]
-  	  @patient.billing_id = params[:billing_id]
   	  @patient.physician = params[:physician]
   	  @patient.discharge_status = 0
   flash[:notice] = 'Patient was successfully created.' if @patient.save
@@ -23,6 +23,6 @@ class ApiController < ApplicationController
   end
 
       def patient_params
-      params.require(:patient).permit(:name, :hospitaladmin_id, :gender, :date_of_birth, :contact_no, :billing_id, :physician)
+      params.require(:patient).permit(:first_name, :last_name, :email, :hospitaladmin_id, :mi, :contact_no, :physician)
     end
 end

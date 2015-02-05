@@ -80,7 +80,10 @@ ActiveRecord::Schema.define(version: 20150125195048) do
   add_index "hospitaladmins", ["reset_password_token"], name: "index_hospitaladmins_on_reset_password_token", unique: true, using: :btree
 
   create_table "patients", force: :cascade do |t|
-    t.string   "name",             limit: 255
+    t.string   "first_name",       limit: 255
+    t.string   "last_name",        limit: 255
+    t.string   "mi",               limit: 255
+    t.string   "email",            limit: 255
     t.integer  "hospitaladmin_id", limit: 4
     t.string   "gender",           limit: 255
     t.string   "date_of_birth",    limit: 255

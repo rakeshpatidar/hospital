@@ -12,12 +12,15 @@
                                                 <th class="per3">
                                                     #
                                                 </th>
-                                                <th class="per15">Name</th>
+                                                <th class="per15">First Name</th>
+                                                <th class="per15">Last Name</th>
+                                                <th class="per15">Email</th>
                                                 <th class="per5">Gender</th>
-                                                <th class="per15">Date-of-birth</th>
-                                                <th class="per15">Contact No</th>
-                                                <th class="per20">Billing ID</th>
-                                                 <th class="per20">Attending Physician</th>
+                                                <th class="per20">MI</th>
+                                                <th class="per10">Date-of-birth</th>
+                                                <th class="per10">Contact No</th>
+                                                <th class="per10">Billing ID</th>
+                                                 <th class="per15">Attending Physician</th>
                                                <th colspan="3"></th>
                                             </tr>
                                         </thead>
@@ -29,8 +32,11 @@
                                                 <td>
                                                     <%= $count %>
                                                 </td>
-                                                       <td><%= patient.name %></td>
+                                                       <td><%= patient.first_name %></td>
+                                                       <td><%= patient.last_name %></td>
+                                                       <td><%= patient.email %></td>
                                                         <td><%= patient.gender %></td>
+                                                        <td><%= patient.mi %></td>
                                                         <td><%= patient.date_of_birth %></td>
                                                         <td><%= patient.contact_no %></td>
                                                         <td><%= patient.billing_id %></td>
