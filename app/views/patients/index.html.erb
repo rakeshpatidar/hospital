@@ -54,6 +54,10 @@
                                                     <i class="fa fa-trash-o fa-5"></i>
                                                 <% end %>
                                                 </td>
+                                                <td><%= link_to patient, method: :delete, data: { confirm: 'Are you sure?', no_turbolink: true } do %>
+                                                    <i class="fa fa-trash-o fa-5"></i>
+                                                <% end %>
+                                                </td>
                                             </tr>
                                            <% 
                                            $count = $count+1 

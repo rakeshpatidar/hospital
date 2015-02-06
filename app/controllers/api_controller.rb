@@ -1,7 +1,8 @@
 class ApiController < ApplicationController
   respond_to :json
   def patient
-   @patients = Patient.where(:discharge_status => 0)
+    @hid = params[:hid]
+   @patients = Patient.where(:discharge_status => 0, :hospitaladmin_id => @hid)
      respond_with(@patients)
   end
     def disease
