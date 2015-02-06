@@ -2,7 +2,7 @@ class ApiController < ApplicationController
   respond_to :json
   def patient
     @d_id = params[:d_id]
-   @patients = Patient.where(:discharge_status => 0, :physician => @d_id)
+   @patients = Patient.where(:discharge_status => 0, :hospitaladmin_id => @d_id)
      respond_with(@patients)
   end
     def disease
@@ -24,6 +24,6 @@ class ApiController < ApplicationController
   end
 
       def patient_params
-      params.require(:patient).permit(:first_name, :last_name, :email, :hospitaladmin_id, :mi, :contact_no, :physician)
+      params.require(:patient).permit(:d_id, :first_name, :last_name, :email, :hospitaladmin_id, :mi, :contact_no, :physician)
     end
 end
