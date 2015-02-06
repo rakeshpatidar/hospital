@@ -2,7 +2,7 @@ class ApiController < ApplicationController
   respond_to :json
   def patient
     @d_id = params[:d_id]
-   @patients = Patient.where(:discharge_status => 0, :hospitaladmin_id => @d_id)
+   #@patients = Patient.where(:discharge_status => 0, :hospitaladmin_id => @d_id)
      respond_with(@d_id)
   end
     def disease
