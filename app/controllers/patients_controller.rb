@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-  before_action :authenticate_hospitaladmin!, :except => [:index, :destroy]
+  before_action :authenticate_hospitaladmin!, :except => [:show, :index]
   before_action :set_patient, only: [:show, :edit, :update, :destroy, :patientlist, :discharge]
 
   respond_to :html, :json
@@ -52,15 +52,8 @@ class PatientsController < ApplicationController
   end
 
   def destroy
-   @patient = Patient.find(params[:id])
-   
-    respond_to do |format|
-      if @patient.destroy
-        format.json { head :no_content, status: :ok }
-      else
-        format.json { render json: @patient.errors, status: :unprocessable_entity }
-      end
-    end
+    @patient.destroy
+    respond_with(@patient)
   end
 
   #private
