@@ -27,6 +27,24 @@ class ApiController < ApplicationController
   respond_with(@patient)
   end
 
+   def destroy
+    @patient = Patient.where(:id => params[:id])
+      if @patient.blank?
+        respond_to do |format|  ## Add this
+          format.json { render :json => ('Not available')}
+        end 
+      else
+    respond_to do |format|
+      @patient1 = Patient.find(params[:id])
+      if @patient1.destroy
+        format.json { render :json => ('success') }
+      else
+        format.json { render json: @patient1.errors, status: :unprocessable_entity }
+      end
+     end 
+    end
+  end
+
       def patient_params
       params.require(:patient).permit(:d_id, :first_name, :last_name, :email, :hospitaladmin_id, :mi, :contact_no, :physician)
     end
