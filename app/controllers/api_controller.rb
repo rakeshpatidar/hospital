@@ -2,9 +2,12 @@ class ApiController < ApplicationController
   respond_to :json
   def patient
     @d_id = params[:d_id]
-    #@patients = Patient.where(:discharge_status => 0, :physician => @d_id)
-    @patients = Doctor.all
+    @patients = Patient.where(:discharge_status => 0, :physician => @d_id)
+    if @patients.empty?
+     respond_with('Not available')
+    else
      respond_with(@patients)
+    end 
   end
     def disease
    @diseasecode = Diseasecode.all

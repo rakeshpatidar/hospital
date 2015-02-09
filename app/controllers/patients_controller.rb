@@ -1,12 +1,24 @@
 class PatientsController < ApplicationController
-  before_action :authenticate_hospitaladmin!
+  before_action :authenticate_hospitaladmin!, :except => [:index]
   before_action :set_patient, only: [:show, :edit, :update, :destroy, :patientlist, :discharge]
 
   respond_to :html, :json
 
   def index
-    @patients = @patients = current_hospitaladmin.patients.where(:discharge_status => 0)
-    respond_with(@patients1)
+    @d_id = params[:d_id]
+    @currentadmin = current_hospitaladmin
+    @patients = current_hospitaladmin.patients.where(:discharge_status => 0) 
+    @patients_json = Patient.where(:discharge_status => 0, :physician => @d_id)
+    
+    respond_to do |format|
+       format.html  # new.html.erb
+       if @patients_json.empty?
+        format.json  { render :json => ('Not available') }
+       else
+        format.json  { render :json => @patients_json }
+       end 
+       
+  end
   end
 
   def show
