@@ -7,7 +7,7 @@ def create
     respond_to do |format|  
       format.html { respond_with resource, :location => after_sign_in_path_for(resource) }  
       format.json {  
-         return render :json => {  :success => true, 
+         return render :json => {  :success => true
           
          } 
       }  
