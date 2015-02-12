@@ -52,6 +52,21 @@ class ApiController < ApplicationController
      respond_with(@patient)
     end 
   end
+  def login
+    @email = params[:email]
+    @pass = params[:pass]
+    @doctor = Doctor.find_by_email(@email)
+    if @doctor.nil?
+      respond_with('User not available')
+    else
+      if(@doctor.valid_password?(@pass))
+        respond_with(@doctor)
+      else
+        respond_with('wrong password')
+      end  
+    end
+  end
+
       def patient_params
       params.require(:patient).permit(:d_id, :first_name, :last_name, :email, :hospitaladmin_id, :mi, :contact_no, :physician)
     end
