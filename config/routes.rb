@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'api/disease'
   get 'api/addpatient'
   get 'api/destroy'
+  get 'api/singlepatient'
 
   resources :diseasecodes
 

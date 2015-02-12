@@ -44,7 +44,14 @@ class ApiController < ApplicationController
      end 
     end
   end
-
+  def singlepatient
+    @patient = Patient.where(:id => params[:id])
+    if @patient.empty?
+     respond_with('Not available')
+    else
+     respond_with(@patient)
+    end 
+  end
       def patient_params
       params.require(:patient).permit(:d_id, :first_name, :last_name, :email, :hospitaladmin_id, :mi, :contact_no, :physician)
     end
