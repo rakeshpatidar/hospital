@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
 
-  get 'api/patient'
+  get 'api/patients'
   get 'api/disease'
   get 'api/addpatient'
   get 'api/destroy'
