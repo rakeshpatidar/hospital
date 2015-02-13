@@ -36,6 +36,49 @@ class ApiController < ApplicationController
   end
   def addpatient
   	  @patient = Patient.create(params[:id])
+      if params[:first_name].empty?
+         addpatient = ActiveSupport::HashWithIndifferentAccess.new
+        addpatient[:success] = 0
+        addpatient[:msg] = 'empty first name'
+        addpatient[:data] = ''
+        respond_with(addpatient) 
+      elsif  params[:last_name].empty?
+         addpatient = ActiveSupport::HashWithIndifferentAccess.new
+        addpatient[:success] = 0
+        addpatient[:msg] = 'empty last name'
+        addpatient[:data] = ''
+        respond_with(addpatient)
+      elsif  params[:email].empty?
+         addpatient = ActiveSupport::HashWithIndifferentAccess.new
+        addpatient[:success] = 0
+        addpatient[:msg] = 'empty email'
+        addpatient[:data] = ''
+        respond_with(addpatient)
+      elsif  params[:hospitaladmin_id].empty?
+         addpatient = ActiveSupport::HashWithIndifferentAccess.new
+        addpatient[:success] = 0
+        addpatient[:msg] = 'empty hospitaladmin id'
+        addpatient[:data] = ''
+        respond_with(addpatient)
+      elsif  params[:mi].empty?
+         addpatient = ActiveSupport::HashWithIndifferentAccess.new
+        addpatient[:success] = 0
+        addpatient[:msg] = 'empty mi'
+        addpatient[:data] = ''
+        respond_with(addpatient)
+       elsif  params[:contact_no].empty?
+         addpatient = ActiveSupport::HashWithIndifferentAccess.new
+        addpatient[:success] = 0
+        addpatient[:msg] = 'empty contact no'
+        addpatient[:data] = ''
+        respond_with(addpatient) 
+        elsif  params[:physician].empty?
+         addpatient = ActiveSupport::HashWithIndifferentAccess.new
+        addpatient[:success] = 0
+        addpatient[:msg] = 'empty physician'
+        addpatient[:data] = ''
+        respond_with(addpatient)        
+      else
   	  @patient.first_name = params[:first_name]
       @patient.last_name = params[:last_name]
       @patient.email = params[:email]
@@ -44,10 +87,21 @@ class ApiController < ApplicationController
   	  @patient.contact_no = params[:contact_no]
   	  @patient.physician = params[:physician]
   	  @patient.discharge_status = 0
-  flash[:notice] = 'Patient was successfully created.' if @patient.save
-  respond_with(@patient)
-  end
-
+    if @patient.save
+        addpatient = ActiveSupport::HashWithIndifferentAccess.new
+        addpatient[:success] = 1
+        addpatient[:msg] = 'succesfully save data'
+        addpatient[:data] = @patient
+        respond_with(addpatient)
+    else
+        addpatient = ActiveSupport::HashWithIndifferentAccess.new
+        addpatient[:success] = 0
+        addpatient[:msg] = 'no data save'
+        addpatient[:data] = ''
+        respond_with(addpatient)
+    end 
+    end   
+  end  
    def destroy
     @patient = Patient.where(:id => params[:id])
       if @patient.blank?
