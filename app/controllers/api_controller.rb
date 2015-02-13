@@ -1,8 +1,8 @@
 class ApiController < ApplicationController
   respond_to :json
   def patients
-    @d_id = params[:d_id]
-    @patients = Patient.where(:discharge_status => 0, :physician => @d_id)
+    @physician = params[:physician]
+    @patients = Patient.where(:discharge_status => 0, :physician => @physician)
     if @patients.empty?
       patients = ActiveSupport::HashWithIndifferentAccess.new
       patients[:success] = 0
