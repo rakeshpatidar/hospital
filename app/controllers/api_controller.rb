@@ -171,6 +171,32 @@ class ApiController < ApplicationController
     end
   end
 
+  def discharge
+    @discharge_patient = Patient.where(:id => params[:id])
+    @discharged = Patient.where(:id => params[:id], :discharge_status => 1)
+    if @discharge_patient.empty?
+      discharge = ActiveSupport::HashWithIndifferentAccess.new
+      discharge[:success] = 0
+      discharge[:msg] = 'no data available'
+      discharge[:data] = ''
+     respond_with(discharge)
+    elsif !@discharged.empty?
+         @update = Patient.update(params[:id], discharge_status: 1)
+         addpatient = ActiveSupport::HashWithIndifferentAccess.new
+         addpatient[:success] = 0
+         addpatient[:msg] = 'patient already discharge'
+         addpatient[:data] = ''
+         respond_with(addpatient)
+    else @update = Patient.update(params[:id], discharge_status: 1)
+         addpatient = ActiveSupport::HashWithIndifferentAccess.new
+         addpatient[:success] = 1
+         addpatient[:msg] = 'succesfully discharge patient'
+         addpatient[:data] = ''
+         respond_with(addpatient)     
+   
+    end  
+  end  
+
       def patient_params
       params.require(:patient).permit(:d_id, :first_name, :last_name, :email, :hospitaladmin_id, :mi, :contact_no, :physician)
     end
