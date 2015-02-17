@@ -48,30 +48,12 @@ class ApiController < ApplicationController
         addpatient[:msg] = 'empty last name'
         addpatient[:data] = ''
         respond_with(addpatient)
-      elsif  params[:email].empty?
-         addpatient = ActiveSupport::HashWithIndifferentAccess.new
-        addpatient[:success] = 0
-        addpatient[:msg] = 'empty email'
-        addpatient[:data] = ''
-        respond_with(addpatient)
       elsif  params[:hospitaladmin_id].empty?
          addpatient = ActiveSupport::HashWithIndifferentAccess.new
         addpatient[:success] = 0
         addpatient[:msg] = 'empty hospitaladmin id'
         addpatient[:data] = ''
         respond_with(addpatient)
-      elsif  params[:mi].empty?
-         addpatient = ActiveSupport::HashWithIndifferentAccess.new
-        addpatient[:success] = 0
-        addpatient[:msg] = 'empty mi'
-        addpatient[:data] = ''
-        respond_with(addpatient)
-       elsif  params[:contact_no].empty?
-         addpatient = ActiveSupport::HashWithIndifferentAccess.new
-        addpatient[:success] = 0
-        addpatient[:msg] = 'empty contact no'
-        addpatient[:data] = ''
-        respond_with(addpatient) 
         elsif  params[:physician].empty?
          addpatient = ActiveSupport::HashWithIndifferentAccess.new
         addpatient[:success] = 0
@@ -83,7 +65,9 @@ class ApiController < ApplicationController
       @patient.last_name = params[:last_name]
       @patient.email = params[:email]
   	  @patient.hospitaladmin_id = params[:hospitaladmin_id]
-  	  @patient.mi = params[:mi]
+  	  @patient.gender = params[:gender]
+      @patient.date_of_birth = params[:date_of_birth]
+      @patient.mi = params[:mi]
   	  @patient.contact_no = params[:contact_no]
   	  @patient.physician = params[:physician]
   	  @patient.discharge_status = 0
