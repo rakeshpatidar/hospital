@@ -17,6 +17,23 @@ class ApiController < ApplicationController
      respond_with(patients)
     end 
   end
+  def dischargepatients
+    @physician = params[:physician]
+    @patients = Patient.where(:discharge_status => 1, :physician => @physician)
+    if @patients.empty?
+      patients = ActiveSupport::HashWithIndifferentAccess.new
+      patients[:success] = 0
+      patients[:msg] = 'no data available'
+      patients[:data] = ''
+     respond_with(patients)
+    else
+      patients = ActiveSupport::HashWithIndifferentAccess.new
+      patients[:success] = 1
+      patients[:msg] = 'succesfully get data'
+      patients[:data] = @patients 
+     respond_with(patients)
+    end 
+  end
     def disease
       @hospitaladmin_id = params[:hospitaladmin_id]
       @disease = Diseasecode.where(:hospitaladmin_id => @hospitaladmin_id)
@@ -221,7 +238,6 @@ class ApiController < ApplicationController
            @patient = Patient.find(params[:patient_id])
         @code = params[:code]
         @disease = params[:disease]
-        @patient = Patient.find(params[:patient_id])
         @Patientdisease = Patientdisease.where(:patient_id => params[:patient_id])
         if @Patientdisease.empty?
           @patientdisease = @patient.patientdiseases.create()
