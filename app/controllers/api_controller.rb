@@ -18,8 +18,8 @@ class ApiController < ApplicationController
     end 
   end
     def disease
-      @hospital_id = params[:hospital_id]
-      @disease = Diseasecode.where(:hospitaladmin_id => @hospital_id)
+      @hospitaladmin_id = params[:hospitaladmin_id]
+      @disease = Diseasecode.where(:hospitaladmin_id => @hospitaladmin_id)
       if @disease.empty?
         disease = ActiveSupport::HashWithIndifferentAccess.new
         disease[:success] = 0
@@ -181,12 +181,21 @@ class ApiController < ApplicationController
     end  
   end  
   def diseasecode
-      @hospital_id = params[:hospital_id]
+      @hospitaladmin_id = params[:hospitaladmin_id]
+        @disease = Diseasecode.where(:hospitaladmin_id => @hospitaladmin_id)
+      if @disease.empty?
+        disease = ActiveSupport::HashWithIndifferentAccess.new
+        disease[:success] = 0
+        disease[:msg] = 'no data available'
+        disease[:data] = ''
+        respond_with(disease)
+      else
         disease = ActiveSupport::HashWithIndifferentAccess.new
         disease[:success] = 1
         disease[:msg] = 'succesfully get data'
-        disease[:data] = @hospital_id 
-      respond_with(disease) 
+        disease[:data] = @disease 
+      respond_with(disease)
+    end 
   end  
       def patient_params
       params.require(:patient).permit(:d_id, :first_name, :last_name, :email, :hospitaladmin_id, :mi, :contact_no, :physician)
