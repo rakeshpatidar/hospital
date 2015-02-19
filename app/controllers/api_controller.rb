@@ -218,36 +218,11 @@ class ApiController < ApplicationController
         patientdiseasecode[:data] = ''
         respond_with(patientdiseasecode)    
     else    
-        @patient = Patient.find(params[:patient_id])
-        @code = params[:code]
-        @disease = params[:disease]
-        @patient = Patient.find(params[:patient_id])
-        @Patientdisease = Patientdisease.where(:patient_id => params[:patient_id])
-        if @Patientdisease.empty?
-          @patientdisease = @patient.patientdiseases.create()
-          @patientdisease.code = @code
-          @patientdisease.disease = @disease
-
-          if @patientdisease.save
-              patientdiseasecode = ActiveSupport::HashWithIndifferentAccess.new
-              patientdiseasecode[:success] = 1
-              patientdiseasecode[:msg] = 'succesfully save data'
-              patientdiseasecode[:data] = @patientdisease
-              respond_with(patientdiseasecode)
-          else
-              patientdiseasecode = ActiveSupport::HashWithIndifferentAccess.new
-              patientdiseasecode[:success] = 0
-              patientdiseasecode[:msg] = 'no data save'
-              patientdiseasecode[:data] = ''
-              respond_with(patientdiseasecode)
-          end
-        else
-           patientdiseasecode = ActiveSupport::HashWithIndifferentAccess.new
-           patientdiseasecode[:success] = 0
-           patientdiseasecode[:msg] = 'already save data'
-           patientdiseasecode[:data] = ''
-           respond_with(patientdiseasecode) 
-        end  
+       patientdiseasecode = ActiveSupport::HashWithIndifferentAccess.new
+        patientdiseasecode[:success] = 1
+        patientdiseasecode[:msg] = 'succesfully'
+        patientdiseasecode[:data] = ''
+        respond_with(patientdiseasecode) 
       end      
   end 
       def patient_params
