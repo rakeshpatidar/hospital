@@ -180,7 +180,14 @@ class ApiController < ApplicationController
    
     end  
   end  
-
+  def diseasecode
+      @hospital_id = params[:hospital_id]
+        disease = ActiveSupport::HashWithIndifferentAccess.new
+        disease[:success] = 1
+        disease[:msg] = 'succesfully get data'
+        disease[:data] = @hospital_id 
+      respond_with(disease) 
+  end  
       def patient_params
       params.require(:patient).permit(:d_id, :first_name, :last_name, :email, :hospitaladmin_id, :mi, :contact_no, :physician)
     end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'api/singlepatient'
   get 'api/login'
   get 'api/discharge'
+  get 'api/diseasecode'
 
   resources :diseasecodes
 
