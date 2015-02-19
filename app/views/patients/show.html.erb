@@ -45,6 +45,19 @@
   <%= @patient.physician %>
 </p>
 
+<h2>Disease</h2>
+<% @patient.patientdiseases.each do |patientdisease| %>
+  <p>
+    <strong>Code:</strong>
+    <%= patientdisease.code %>
+  </p>
+ 
+  <p>
+    <strong>Disease:</strong>
+    <%= patientdisease.disease %>
+  </p>
+<% end %>
+
 <%= link_to 'Edit', edit_patient_path(@patient) %> |
 <%= link_to 'Back', patients_path %>
 <%= render 'layouts/footer_content' %>

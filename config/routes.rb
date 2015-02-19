@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
 
+  get 'git/status'
+
   get 'api/patients'
   get 'api/disease'
   get 'api/addpatient'
@@ -9,6 +11,7 @@ Rails.application.routes.draw do
   get 'api/login'
   get 'api/discharge'
   get 'api/diseasecode'
+  get 'api/patientdisease'
 
   resources :diseasecodes
 
@@ -35,7 +38,6 @@ resources :doctors
   devise_for :admins
   resources :dashboards, only: [:index]
   resources :hospitaladmin
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
