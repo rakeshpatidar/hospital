@@ -216,7 +216,7 @@ class ApiController < ApplicationController
   end 
 
   def patientdisease
-    if params[:patient_id].empty?
+    if params[:id].empty?
         patientdiseasecode = ActiveSupport::HashWithIndifferentAccess.new
         patientdiseasecode[:success] = 0
         patientdiseasecode[:msg] = 'empty patient id'
@@ -235,10 +235,10 @@ class ApiController < ApplicationController
         patientdiseasecode[:data] = ''
         respond_with(patientdiseasecode)    
     else    
-           @patient = Patient.find(params[:patient_id])
+        @patient = Patient.where(:id => params[:id])
         @code = params[:code]
         @disease = params[:disease]
-        @Patientdisease = Patientdisease.where(:patient_id => params[:patient_id])
+        @Patientdisease = Patientdisease.where(:patient_id => params[:id])
         if @Patientdisease.empty?
           @patientdisease = @patient.patientdiseases.create()
           @patientdisease.code = @code
