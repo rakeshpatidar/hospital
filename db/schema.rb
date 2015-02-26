@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150219080742) do
+ActiveRecord::Schema.define(version: 20150225110354) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -89,6 +89,15 @@ ActiveRecord::Schema.define(version: 20150219080742) do
 
   add_index "patientdiseases", ["patient_id"], name: "index_patientdiseases_on_patient_id", using: :btree
 
+  create_table "patientmsgs", force: :cascade do |t|
+    t.text     "text_msg",   limit: 65535
+    t.integer  "patient_id", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "patientmsgs", ["patient_id"], name: "index_patientmsgs_on_patient_id", using: :btree
+
   create_table "patients", force: :cascade do |t|
     t.string   "first_name",       limit: 255
     t.string   "last_name",        limit: 255
@@ -106,4 +115,5 @@ ActiveRecord::Schema.define(version: 20150219080742) do
   end
 
   add_foreign_key "patientdiseases", "patients"
+  add_foreign_key "patientmsgs", "patients"
 end

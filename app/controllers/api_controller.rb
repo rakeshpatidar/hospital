@@ -266,6 +266,57 @@ class ApiController < ApplicationController
         end
       end      
   end 
+  def patientmsg
+    if params[:id].empty?
+        patientdiseasecode = ActiveSupport::HashWithIndifferentAccess.new
+        patientdiseasecode[:success] = 0
+        patientdiseasecode[:msg] = 'empty patient id'
+        patientdiseasecode[:data] = ''
+        respond_with(patientdiseasecode)
+    elsif params[:text_msg].empty?
+        patientdiseasecode = ActiveSupport::HashWithIndifferentAccess.new
+        patientdiseasecode[:success] = 0
+        patientdiseasecode[:msg] = 'empty message data'
+        patientdiseasecode[:data] = ''
+        respond_with(patientdiseasecode)
+    elsif
+        @patient = Patient.where(:id => params[:id])
+        @text_msg = params[:text_msg]
+          if @patient.empty?
+            patientdiseasecode = ActiveSupport::HashWithIndifferentAccess.new
+            patientdiseasecode[:success] = 0
+            patientdiseasecode[:msg] = 'patient not available'
+            patientdiseasecode[:data] = ''
+            respond_with(patientdiseasecode)
+          else
+           @checkdata = Patientmsg.where(:patient_id => params[:id])
+           if @checkdata.empty? 
+            @patientmsg1 = Patientmsg.new()
+            @patientmsg1.patient_id = params[:id]
+            @patientmsg1.text_msg = @text_msg
+            if @patientmsg1.save
+               patientdiseasecode = ActiveSupport::HashWithIndifferentAccess.new
+               patientdiseasecode[:success] = 1
+               patientdiseasecode[:msg] = 'message save succesfully'
+               patientdiseasecode[:data] = ''
+               respond_with(patientdiseasecode)
+            else
+               patientdiseasecode = ActiveSupport::HashWithIndifferentAccess.new
+               patientdiseasecode[:success] = 0
+               patientdiseasecode[:msg] = 'message not save'
+               patientdiseasecode[:data] = ''
+               respond_with(patientdiseasecode)
+            end 
+           else
+            patientdiseasecode = ActiveSupport::HashWithIndifferentAccess.new
+            patientdiseasecode[:success] = 0
+            patientdiseasecode[:msg] = 'data already available'
+            patientdiseasecode[:data] = ''
+            respond_with(patientdiseasecode)
+           end  
+          end  
+    end  
+  end  
       def patient_params
       params.require(:patient).permit(:d_id, :first_name, :last_name, :email, :hospitaladmin_id, :mi, :contact_no, :physician)
     end

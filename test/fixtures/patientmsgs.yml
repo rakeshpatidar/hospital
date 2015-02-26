@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  text_msg: MyText
+  patient_id: 
+
+two:
+  text_msg: MyText
+  patient_id: 
