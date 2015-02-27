@@ -273,6 +273,12 @@ class ApiController < ApplicationController
         patientdiseasecode[:msg] = 'empty patient id'
         patientdiseasecode[:data] = ''
         respond_with(patientdiseasecode)
+    elsif params[:physician].empty?
+        patientdiseasecode = ActiveSupport::HashWithIndifferentAccess.new
+        patientdiseasecode[:success] = 0
+        patientdiseasecode[:msg] = 'empty physician data'
+        patientdiseasecode[:data] = ''
+        respond_with(patientdiseasecode)
     elsif params[:text_msg].empty?
         patientdiseasecode = ActiveSupport::HashWithIndifferentAccess.new
         patientdiseasecode[:success] = 0
@@ -293,6 +299,7 @@ class ApiController < ApplicationController
            if @checkdata.empty? 
             @patientmsg1 = Patientmsg.new()
             @patientmsg1.patient_id = params[:id]
+            @patientmsg1.physician = params[:physician]
             @patientmsg1.text_msg = @text_msg
             if @patientmsg1.save
                patientdiseasecode = ActiveSupport::HashWithIndifferentAccess.new

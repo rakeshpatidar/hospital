@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20150225110354) do
 
   create_table "patientmsgs", force: :cascade do |t|
     t.text     "text_msg",   limit: 65535
+    t.integer  "physician",  limit: 4
     t.integer  "patient_id", limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
