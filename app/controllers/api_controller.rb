@@ -342,7 +342,7 @@ class ApiController < ApplicationController
     end  
   end
   def archivemsg
-     @listarchive = Archivemsg.all
+     @listarchive = Archivemsg.where(:physician => params[:physician])
      if @listarchive.empty?
         archivelist = ActiveSupport::HashWithIndifferentAccess.new
         archivelist[:success] = 0
