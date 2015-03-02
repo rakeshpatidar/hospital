@@ -111,14 +111,31 @@ class ApiController < ApplicationController
         destroy[:msg] = 'no data available'
         destroy[:data] = ''
         respond_with(destroy)
-      else
-        @patient1 = Patient.find(params[:id])
-          if @patient1.destroy
-            destroy = ActiveSupport::HashWithIndifferentAccess.new
-            destroy[:success] = 1
-            destroy[:msg] = 'succesfully delete data'
-            destroy[:data] = ''
-            respond_with(destroy)
+      else 
+        @patientdisease = Patientdisease.find_by patient_id: params[:id] #get asigned code
+        @patientmsg = Patientmsg.find_by patient_id: params[:id]  # Get patient Message from patient id
+        if(params[:msg_delete] == '1')  # delete the message of patient if request is 1
+          @patientmsg.destroy
+        else                            # entry go on archive if request is 0
+          @archivelist = Archivemsg.create()
+          @archivelist.patient = params[:id]
+          @archivelist.physician = @patientmsg.physician
+          @archivelist.text_msg = @patientmsg.text_msg
+          @patientname = Patient.find_by id: params[:id]   #find patient name
+          @archivelist.patient_name = @patientname.first_name
+          @doctorname = Doctor.find_by id: @patientmsg.physician  #find doctor name
+          @archivelist.physician_name = @doctorname.name
+          @archivelist.save
+          @patientmsg.destroy       #delete the asigned message
+          @patientdisease.destroy   #delete the asigned code
+        end   
+          @patient1 = Patient.find_by id: params[:id] 
+          if @patient1.destroy 
+                destroy = ActiveSupport::HashWithIndifferentAccess.new
+                destroy[:success] = 1
+                destroy[:msg] = 'succesfully delete data'
+                destroy[:data] = ''
+                respond_with(destroy)
           else
             #format.json { render json: @patient1.errors, status: :unprocessable_entity }
             destroy = ActiveSupport::HashWithIndifferentAccess.new
@@ -323,6 +340,22 @@ class ApiController < ApplicationController
            end  
           end  
     end  
+  end
+  def archivemsg
+     @listarchive = Archivemsg.all
+     if @listarchive.empty?
+        archivelist = ActiveSupport::HashWithIndifferentAccess.new
+        archivelist[:success] = 0
+        archivelist[:msg] = 'data not available'
+        archivelist[:data] = ''
+        respond_with(archivelist)      
+     else
+        archivelist = ActiveSupport::HashWithIndifferentAccess.new
+        archivelist[:success] = 1
+        archivelist[:msg] = 'succesfully'
+        archivelist[:data] = @listarchive
+        respond_with(archivelist)
+     end 
   end  
       def patient_params
       params.require(:patient).permit(:d_id, :first_name, :last_name, :email, :hospitaladmin_id, :mi, :contact_no, :physician)
