@@ -1,0 +1,24 @@
+
+<%= form_for(@photomsg, multipart: true) do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+ 
+  <p>
+    <%= f.label :physician %><br>
+    <%= f.text_field :physician %>
+  </p>
+    <p>
+    <%= f.label :patient %><br>
+    <%= f.text_field :patient %>
+  </p>
+    <p>
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

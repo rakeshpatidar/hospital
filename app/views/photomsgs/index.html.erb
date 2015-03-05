@@ -1,0 +1,22 @@
+<h1>Listing photomsg</h1>
+ 
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Physician</th>
+    <th>Patient</th>
+    <th>Image</th>
+  </tr>
+ 
+  <% @photomsgs.each do |photomsg| %>
+    <tr>
+      <td><%= photomsg.title %></td>
+      <td><%= photomsg.physician %></td>
+      <td><%= photomsg.patient %></td>
+     
+       <td></td>
+  
+    </tr>
+  <% end %>
+</table>
+

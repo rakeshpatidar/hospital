@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150302100915) do
+ActiveRecord::Schema.define(version: 20150304194219) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -123,6 +123,18 @@ ActiveRecord::Schema.define(version: 20150302100915) do
     t.string   "physician",        limit: 255
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+  end
+
+  create_table "photomsgs", force: :cascade do |t|
+    t.integer  "physician",          limit: 4
+    t.integer  "patient",            limit: 4
+    t.string   "title",              limit: 255
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
+    t.datetime "image_updated_at"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_foreign_key "patientdiseases", "patients"

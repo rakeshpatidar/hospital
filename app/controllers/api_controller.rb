@@ -312,8 +312,7 @@ class ApiController < ApplicationController
             patientdiseasecode[:data] = ''
             respond_with(patientdiseasecode)
           else
-           @checkdata = Patientmsg.where(:patient_id => params[:id])
-           if @checkdata.empty? 
+          
             @patientmsg1 = Patientmsg.new()
             @patientmsg1.patient_id = params[:id]
             @patientmsg1.physician = params[:physician]
@@ -322,7 +321,7 @@ class ApiController < ApplicationController
                patientdiseasecode = ActiveSupport::HashWithIndifferentAccess.new
                patientdiseasecode[:success] = 1
                patientdiseasecode[:msg] = 'message save succesfully'
-               patientdiseasecode[:data] = ''
+               patientdiseasecode[:data] = @patientmsg1
                respond_with(patientdiseasecode)
             else
                patientdiseasecode = ActiveSupport::HashWithIndifferentAccess.new
@@ -331,15 +330,44 @@ class ApiController < ApplicationController
                patientdiseasecode[:data] = ''
                respond_with(patientdiseasecode)
             end 
-           else
-            patientdiseasecode = ActiveSupport::HashWithIndifferentAccess.new
-            patientdiseasecode[:success] = 0
-            patientdiseasecode[:msg] = 'data already available'
-            patientdiseasecode[:data] = ''
-            respond_with(patientdiseasecode)
-           end  
+            
           end  
     end  
+  end
+  def patientmsglist
+      @patientmsglist = Patientmsg.where(:patient_id => params[:id])  #id of the patientid id
+      if @patientmsglist.empty?
+        patientmsglist = ActiveSupport::HashWithIndifferentAccess.new
+        patientmsglist[:success] = 0
+        patientmsglist[:msg] = 'data not available'
+        patientmsglist[:data] = ''
+        respond_with(patientmsglist)     
+      else
+        patientmsglist = ActiveSupport::HashWithIndifferentAccess.new
+        patientmsglist[:success] = 1
+        patientmsglist[:msg] = 'Succesfully get data'
+        patientmsglist[:data] = @patientmsglist
+        respond_with(patientmsglist)    
+      end 
+  end
+  def patientmsgedit
+    @patientmsgedit = Patientmsg.where(:id => params[:id])  #id of the pataintmsg id
+    if @patientmsgedit.empty?
+        patientmsgedit = ActiveSupport::HashWithIndifferentAccess.new
+        patientmsgedit[:success] = 0
+        patientmsgedit[:msg] = 'data not available'
+        patientmsgedit[:data] = ''
+        respond_with(patientmsgedit)     
+    else
+      Patientmsg.where(:id => params[:id]).update_all('text_msg' => params[:text_msg])
+      @patientmsgedit = Patientmsg.where(:id => params[:id])  #id of the pataintmsg id
+      patientmsgedit = ActiveSupport::HashWithIndifferentAccess.new
+      patientmsgedit[:success] = 1
+      patientmsgedit[:msg] = 'data updated'
+      patientmsgedit[:data] = @patientmsgedit
+      respond_with(patientmsgedit)   
+    end  
+
   end
   def archivemsg
      @listarchive = Archivemsg.where(:physician => params[:physician])
@@ -356,8 +384,56 @@ class ApiController < ApplicationController
         archivelist[:data] = @listarchive
         respond_with(archivelist)
      end 
-  end  
-      def patient_params
+  end
+  def addphotomsg
+    @photomsg = Photomsg.new()   #at bottom create params
+    @photomsg.physician = params[:physician]
+    @photomsg.patient = params[:patient]
+    if @photomsg.save
+      addphotomsg = ActiveSupport::HashWithIndifferentAccess.new
+      addphotomsg[:success] = 1
+      addphotomsg[:msg] = 'data save succesfully'
+      addphotomsg[:data] = ''
+      respond_with(addphotomsg) 
+    else
+      addphotomsg = ActiveSupport::HashWithIndifferentAccess.new
+      addphotomsg[:success] = 0
+      addphotomsg[:msg] = 'Error no data save'
+      addphotomsg[:data] = ''
+      respond_with(addphotomsg)
+    end  
+
+  end
+  def destroyphotomsg
+    @patient = Patient.where(:id => params[:id])  #here id is patient ID
+    if @patient.empty?
+      photomsg = ActiveSupport::HashWithIndifferentAccess.new
+      photomsg[:success] = 0
+      photomsg[:msg] = 'This patient is not available'
+      photomsg[:data] = ''
+      respond_with(photomsg)    
+    else
+      @photomsg = Photomsg.where(:patient => params[:id])  #here id is patient ID
+       if @photomsg.empty?
+          photomsg = ActiveSupport::HashWithIndifferentAccess.new
+          photomsg[:success] = 0
+          photomsg[:msg] = 'photomsag is not available'
+          photomsg[:data] = ''
+          respond_with(photomsg) 
+       else
+          #@photomsg.destroy
+          Photomsg.where(patient: params[:id]).destroy_all   
+          photomsg = ActiveSupport::HashWithIndifferentAccess.new
+          photomsg[:success] = 1
+          photomsg[:msg] = 'entry succesfully delete'
+          photomsg[:data] = @photomsg
+          respond_with(photomsg)
+       end         
+    end  
+  end
+
+
+  def patient_params
       params.require(:patient).permit(:d_id, :first_name, :last_name, :email, :hospitaladmin_id, :mi, :contact_no, :physician)
-    end
+  end
 end

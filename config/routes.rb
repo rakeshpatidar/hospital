@@ -15,9 +15,13 @@ Rails.application.routes.draw do
   get 'api/archivemsg'
   get 'api/patientdisease'
   get 'api/dischargepatients'
+  get 'api/destroyphotomsg'
+  get 'api/addphotomsg'
+  get 'api/patientmsgedit'
+  get 'api/patientmsglist'
 
   resources :diseasecodes
-
+  resources :photomsgs
   #devise_for :doctors
   devise_for :doctors, controllers: { registrations: "doctors/registrations", sessions: "doctors/sessions"}
 =begin
@@ -30,7 +34,6 @@ devise_scope :doctor do
   end
 end
 =end
-
 resources :doctors
 
   resources :patients

@@ -1,0 +1,2 @@
+module PhotomsgHelper
+end
