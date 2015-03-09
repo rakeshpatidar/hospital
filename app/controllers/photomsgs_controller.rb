@@ -2,15 +2,12 @@ class PhotomsgsController < ApplicationController
 respond_to :html, :json
 def new
   @photomsg = Photomsg.new
-  @photomsg.physician = params[:physician]
-  @photomsg.patient = params[:id]
-  @photomsg.save
+  respond_with(@photomsg)
 end
 
 def create
-  @photomsg = Photomsg.new()
-  @photomsg.physician = params[:physician]
-  @photomsg.patient = params[:id]
+  @photomsg = Photomsg.new(photo_params)
+ 
   if @photomsg.save
     respond_to do |format|
       format.html { redirect_to(@photomsg, :notice => 'photomsg was successfully created.') }

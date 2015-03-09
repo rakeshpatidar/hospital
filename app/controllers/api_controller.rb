@@ -351,7 +351,7 @@ class ApiController < ApplicationController
       end 
   end
   def patientmsgedit
-    @patientmsgedit = Patientmsg.where(:id => params[:id])  #id of the pataintmsg id
+    @patientmsgedit = Patientmsg.where(:text_msg_id => params[:text_msg_id])  #id of the pataintmsg id
     if @patientmsgedit.empty?
         patientmsgedit = ActiveSupport::HashWithIndifferentAccess.new
         patientmsgedit[:success] = 0
@@ -359,12 +359,12 @@ class ApiController < ApplicationController
         patientmsgedit[:data] = ''
         respond_with(patientmsgedit)     
     else
-      Patientmsg.where(:id => params[:id]).update_all('text_msg' => params[:text_msg])
-      @patientmsgedit = Patientmsg.where(:id => params[:id])  #id of the pataintmsg id
+      Patientmsg.where(:text_msg_id => params[:text_msg_id]).update_all('text_msg' => params[:text_msg])
+      @patientmsgedit = Patientmsg.where(:text_msg_id => params[:text_msg_id])  #id of the pataintmsg id
       patientmsgedit = ActiveSupport::HashWithIndifferentAccess.new
       patientmsgedit[:success] = 1
       patientmsgedit[:msg] = 'data updated'
-      patientmsgedit[:data] = @patientmsgedit
+      patientmsgedit[:data] = ''
       respond_with(patientmsgedit)   
     end  
 
@@ -430,6 +430,18 @@ class ApiController < ApplicationController
           respond_with(photomsg)
        end         
     end  
+  end
+  def create
+    @photomsg = Photomsg.new()
+    @photomsg.title = params[:title]
+    @photomsg.physician = params[:physician]
+    @photomsg.patient = params[:patient]
+    @photomsg.save   
+          photomsg = ActiveSupport::HashWithIndifferentAccess.new
+          photomsg[:success] = 1
+          photomsg[:msg] = 'entry succesfully delete'
+          photomsg[:data] = ''
+          respond_with(photomsg)
   end
 
 

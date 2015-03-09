@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'api/addphotomsg'
   get 'api/patientmsgedit'
   get 'api/patientmsglist'
+  match "/api" => "api#create", :via => :post, :as => :create_forum
 
   resources :diseasecodes
   resources :photomsgs
