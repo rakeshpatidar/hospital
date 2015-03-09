@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'api/discharge'
   get 'api/diseasecode'
   get 'api/patientmsg'
+  get 'api/addpatientmsg'
   get 'api/archivemsg'
   get 'api/patientdisease'
   get 'api/dischargepatients'
