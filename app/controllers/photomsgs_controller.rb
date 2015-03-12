@@ -6,7 +6,7 @@ def new
 end
 
 def create
-    @Photomsg = Photomsg.new(photo_params)
+    @Photomsg = Photomsg.new()
     respond_to do |format|
       if @Photomsg.save
         format.json { render json: @Photomsg, status: :created }
