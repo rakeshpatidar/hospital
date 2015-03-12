@@ -6,26 +6,22 @@ def new
 end
 
 def create
-    @Photomsg = Photomsg.new()
-    respond_to do |format|
-      if @Photomsg.save
-        format.json { render json: @Photomsg, status: :created }
-        format.xml { render xml: @Photomsg, status: :created }
+  @photomsg = Photomsg.new(photo_params)
+ 
+  respond_to do |format|
+      if @photomsg.save
+        format.json { render json: @photomsg, status: :created }
+        format.xml { render xml: @photomsg, status: :created }
       else
-        format.json { render json: @Photomsg.errors, status: :unprocessable_entity }
-        format.xml { render xml: @Photomsg.errors, status: :unprocessable_entity }
+        format.json { render json: @photomsg.errors, status: :unprocessable_entity }
+        format.xml { render xml: @photomsg.errors, status: :unprocessable_entity }
       end
     end
-  end
-
- 
+end 
  
 def index
   @photomsgs = Photomsg.all
-  respond_to do |format|
-      format.json { render json: @photomsgs }
-      format.xml { render xml: @photomsgs }
-    end
+  respond_with(@photomsgs)
 end
 
 def edit
@@ -44,7 +40,7 @@ def show
 end 
 private
   def photo_params
-    params.require(:photomsg).permit(:title, :image, :physician, :patient)
+    params.require(:photomsg).permit(:title, :physician, :patient)
   end
 
 end
