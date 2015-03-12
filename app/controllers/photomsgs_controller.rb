@@ -6,6 +6,19 @@ def new
 end
 
 def create
+    @Photomsg = Photomsg.new(params[:photomsg])
+    respond_to do |format|
+      if @Photomsg.save
+        format.json { render json: @Photomsg, status: :created }
+        format.xml { render xml: @Photomsg, status: :created }
+      else
+        format.json { render json: @Photomsg.errors, status: :unprocessable_entity }
+        format.xml { render xml: @Photomsg.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+def create
   @photomsg = Photomsg.new(photo_params)
  
   if @photomsg.save
@@ -24,6 +37,10 @@ end
  
 def index
   @photomsgs = Photomsg.all
+  respond_to do |format|
+      format.json { render json: @photomsgs }
+      format.xml { render xml: @photomsgs }
+    end
 end
 
 def edit

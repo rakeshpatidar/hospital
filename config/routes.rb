@@ -20,10 +20,9 @@ Rails.application.routes.draw do
   get 'api/addphotomsg'
   get 'api/patientmsgedit'
   get 'api/patientmsglist'
-  match "/api" => "api#create", :via => :post, :as => :create_forum
-
   resources :diseasecodes
-  resources :photomsgs
+ resources :photomsgs, :defaults => { :format => 'xml' }
+  #resources :photomsgs
   #devise_for :doctors
   devise_for :doctors, controllers: { registrations: "doctors/registrations", sessions: "doctors/sessions"}
 =begin
