@@ -6,7 +6,7 @@ def new
 end
 
 def create
-    @Photomsg = Photomsg.new(params[:photomsg])
+    @Photomsg = Photomsg.new(photo_params)
     respond_to do |format|
       if @Photomsg.save
         format.json { render json: @Photomsg, status: :created }
@@ -18,22 +18,7 @@ def create
     end
   end
 
-def create
-  @photomsg = Photomsg.new(photo_params)
  
-  if @photomsg.save
-    respond_to do |format|
-      format.html { redirect_to(@photomsg, :notice => 'photomsg was successfully created.') }
-      format.json { render :json => @photomsg, :status => 1, :data => ''} 
-    end
-  else
-    respond_to do |format|
-      format.html { redirect_to(@photomsg, :notice => 'photomsg was fail to created.') }
-      format.json { render :json => @photomsg.errors, :status => :unprocessable_entity} 
-      
-    end
-end
-end 
  
 def index
   @photomsgs = Photomsg.all
