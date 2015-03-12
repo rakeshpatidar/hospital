@@ -38,7 +38,7 @@ end
 def show
   @photomsg = Photomsg.find(params[:id])
 end 
-private
+
   def photo_params
     params.require(:photomsg).permit(:title, :physician, :patient)
   end
