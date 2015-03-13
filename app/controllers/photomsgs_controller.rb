@@ -12,6 +12,8 @@ def create
       if @photomsg.save
         format.json { render json: @photomsg, status: :created }
         format.xml { render xml: @photomsg, status: :created }
+        byebug
+    # => @photomsg.errors.messages
       else
         format.json { render json: @photomsg.errors, status: :unprocessable_entity }
         format.xml { render xml: @photomsg.errors, status: :unprocessable_entity }
