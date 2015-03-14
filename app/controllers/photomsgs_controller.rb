@@ -6,19 +6,8 @@ def new
 end
 
 def create
-  @photomsg = Photomsg.new(photo_params)
- 
-  respond_to do |format|
-      if @photomsg.save
-        format.json { render json: @photomsg, status: :created }
-        format.xml { render xml: @photomsg, status: :created }
-        byebug
-    # => @photomsg.errors.messages
-      else
-        format.json { render json: @photomsg.errors, status: :unprocessable_entity }
-        format.xml { render xml: @photomsg.errors, status: :unprocessable_entity }
-      end
-    end
+@photomsgs = Photomsg.all
+respond_with(@photomsgs)
 end 
  
 def index
