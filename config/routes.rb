@@ -21,8 +21,8 @@ Rails.application.routes.draw do
   get 'api/patientmsgedit'
   get 'api/patientmsglist'
   resources :diseasecodes
- resources :photomsgs, :defaults => { :format => 'json' }
-  #resources :photomsgs
+  
+  resources :photomsgs
   #devise_for :doctors
   devise_for :doctors, controllers: { registrations: "doctors/registrations", sessions: "doctors/sessions"}
 =begin
