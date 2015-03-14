@@ -42,7 +42,7 @@ def show
 end 
 private
   def photo_params
-    params.require(:photomsg).permit(:title, :image, :physician, :patient)
+    params.permit(:title, :image, :physician, :patient)
   end
 
 end
