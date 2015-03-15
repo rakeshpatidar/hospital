@@ -94,4 +94,12 @@ Rails.application.configure do
   :authentication => :plain,
   :enable_starttls_auto => true
 }
+config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_credentials => {
+    :bucket => ENV['cordicare'],
+    :access_key_id => ENV['AKIAJUHKFXT6EU5NGB3Q'],
+    :secret_access_key => ENV['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']
+  }
+}
 end
