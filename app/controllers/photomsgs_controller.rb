@@ -10,13 +10,13 @@ def create
  
   if @photomsg.save
     respond_to do |format|
-      format.html { redirect_to(@photomsg, :notice => 'photomsg was successfully created.') }
-      format.json { render :json => @photomsg, :status => 1, :data => ''} 
+      msg = { :success => 1, :msg => "data save Success!", :data => "" }
+      format.json  { render :json => msg }
     end
   else
     respond_to do |format|
-      format.html { redirect_to(@photomsg, :notice => 'photomsg was fail to created.') }
-      format.json { render :json => @photomsg.errors, :status => :unprocessable_entity} 
+      msg = { :success => 0, :msg => "data not save", :data => "" }
+      format.json  { render :json => msg }
       
     end
 end
@@ -42,7 +42,7 @@ def show
 end 
 private
   def photo_params
-    params.permit(:title, :image, :physician, :patient)
+    params.permit(:image, :physician, :patient_id)
   end
 
 end

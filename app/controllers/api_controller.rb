@@ -436,66 +436,41 @@ def addpatientmsg      #new text message add api
         respond_with(archivelist)
      end 
   end
-  def addphotomsg
-    @photomsg = Photomsg.new()   #at bottom create params
-    @photomsg.physician = params[:physician]
-    @photomsg.patient = params[:patient]
-    if @photomsg.save
-      addphotomsg = ActiveSupport::HashWithIndifferentAccess.new
-      addphotomsg[:success] = 1
-      addphotomsg[:msg] = 'data save succesfully'
-      addphotomsg[:data] = ''
-      respond_with(addphotomsg) 
-    else
-      addphotomsg = ActiveSupport::HashWithIndifferentAccess.new
-      addphotomsg[:success] = 0
-      addphotomsg[:msg] = 'Error no data save'
-      addphotomsg[:data] = ''
-      respond_with(addphotomsg)
-    end  
-
+  def listphotomsg
+     @photomsgs = Photomsg.where(:patient_id => params[:id])  #id of the patientid id
+      if @photomsgs.empty?
+        photomsglist = ActiveSupport::HashWithIndifferentAccess.new
+        photomsglist[:success] = 0
+        photomsglist[:msg] = 'data not available'
+        photomsglist[:data] = ''
+        respond_with(photomsglist)     
+      else
+        photomsglist = ActiveSupport::HashWithIndifferentAccess.new
+        photomsglist[:success] = 1
+        photomsglist[:msg] = 'Succesfully get data'
+        photomsglist[:data] = @photomsgs
+        respond_with(photomsglist)    
+      end 
   end
   def destroyphotomsg
-    @patient = Patient.where(:id => params[:id])  #here id is patient ID
-    if @patient.empty?
-      photomsg = ActiveSupport::HashWithIndifferentAccess.new
-      photomsg[:success] = 0
-      photomsg[:msg] = 'This patient is not available'
-      photomsg[:data] = ''
-      respond_with(photomsg)    
+    @photomsg = Photomsg.where(:photomsg_id => params[:photomsg_id])  #here id is patient ID
+    if @photomsg.empty?
+      d_photomsg = ActiveSupport::HashWithIndifferentAccess.new
+      d_photomsg[:success] = 0
+      d_photomsg[:msg] = 'This photomsg is not available'
+      d_photomsg[:data] = ''
+      respond_with(d_photomsg)    
     else
-      @photomsg = Photomsg.where(:patient => params[:id])  #here id is patient ID
-       if @photomsg.empty?
-          photomsg = ActiveSupport::HashWithIndifferentAccess.new
-          photomsg[:success] = 0
-          photomsg[:msg] = 'photomsag is not available'
-          photomsg[:data] = ''
-          respond_with(photomsg) 
-       else
           #@photomsg.destroy
-          Photomsg.where(patient: params[:id]).destroy_all   
+          Photomsg.where(photomsg_id: params[:photomsg_id]).destroy_all   
           photomsg = ActiveSupport::HashWithIndifferentAccess.new
           photomsg[:success] = 1
           photomsg[:msg] = 'entry succesfully delete'
-          photomsg[:data] = @photomsg
-          respond_with(photomsg)
-       end         
+          photomsg[:data] = ''
+          respond_with(photomsg)    
     end  
   end
-  def create
-    @photomsg = Photomsg.new()
-    @photomsg.title = params[:title]
-    @photomsg.physician = params[:physician]
-    @photomsg.patient = params[:patient]
-    @photomsg.save   
-          photomsg = ActiveSupport::HashWithIndifferentAccess.new
-          photomsg[:success] = 1
-          photomsg[:msg] = 'entry succesfully delete'
-          photomsg[:data] = ''
-          respond_with(photomsg)
-  end
-
-
+  
   def patient_params
       params.require(:patient).permit(:d_id, :first_name, :last_name, :email, :hospitaladmin_id, :mi, :contact_no, :physician)
   end

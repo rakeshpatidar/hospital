@@ -17,11 +17,11 @@ Rails.application.routes.draw do
   get 'api/patientdisease'
   get 'api/dischargepatients'
   get 'api/destroyphotomsg'
-  get 'api/addphotomsg'
+  get 'api/listphotomsg'
   get 'api/patientmsgedit'
   get 'api/patientmsglist'
   resources :diseasecodes
-  
+
   resources :photomsgs
   #devise_for :doctors
   devise_for :doctors, controllers: { registrations: "doctors/registrations", sessions: "doctors/sessions"}
