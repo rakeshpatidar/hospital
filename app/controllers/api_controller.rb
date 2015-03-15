@@ -452,8 +452,17 @@ def addpatientmsg      #new text message add api
         respond_with(photomsglist)    
       end 
   end
+  def photo
+    @photomsg = Photomsg.where(:photomsg_id => params[:photomsg_id])
+    @photo = @photomsg.image.url
+    photo = ActiveSupport::HashWithIndifferentAccess.new
+        photo[:success] = 1
+        photo[:msg] = 'Succesfully get data'
+        photo[:data] = @photo
+        respond_with(photo) 
+  end
   def destroyphotomsg
-    @photomsg = Photomsg.where(:photomsg_id => params[:photomsg_id])  #here id is patient ID
+    @photomsg = Photomsg.where(:photomsg_id => params[:photomsg_id], :physician => params[:physician]) 
     if @photomsg.empty?
       d_photomsg = ActiveSupport::HashWithIndifferentAccess.new
       d_photomsg[:success] = 0
