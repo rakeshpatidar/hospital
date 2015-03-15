@@ -1,17 +1,13 @@
 
 <%= form_for(@photomsg, multipart: true) do |f| %>
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
- 
+
   <p>
     <%= f.label :physician %><br>
     <%= f.text_field :physician %>
   </p>
     <p>
-    <%= f.label :patient %><br>
-    <%= f.text_field :patient %>
+    <%= f.label :patient_id %><br>
+    <%= f.text_field :patient_id %>
   </p>
     <p>
     <%= f.label :image %><br>

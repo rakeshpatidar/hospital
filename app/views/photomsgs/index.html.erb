@@ -2,7 +2,6 @@
  
 <table>
   <tr>
-    <th>Title</th>
     <th>Physician</th>
     <th>Patient</th>
     <th>Image</th>
@@ -10,9 +9,8 @@
  
   <% @photomsgs.each do |photomsg| %>
     <tr>
-      <td><%= photomsg.title %></td>
       <td><%= photomsg.physician %></td>
-      <td><%= photomsg.patient %></td>
+      <td><%= photomsg.patient_id %></td>
      <td><%= image_tag photomsg.image.url %></td>
        <td></td>
   

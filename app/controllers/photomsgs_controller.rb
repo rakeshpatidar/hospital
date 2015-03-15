@@ -7,7 +7,7 @@ end
 
 def create
   @photomsg = Photomsg.new(photo_params)
- 
+  @photomsg.patient_id = params[:id]   #set patient id
   if @photomsg.save
     respond_to do |format|
       msg = { :success => 1, :msg => "data save Success!", :data => "" }
@@ -42,7 +42,7 @@ def show
 end 
 private
   def photo_params
-    params.permit(:image, :physician, :patient_id)
+    params.permit(:image, :physician)  #id is patient id
   end
 
 end
