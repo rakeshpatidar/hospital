@@ -4,8 +4,6 @@ class Photomsg < ActiveRecord::Base
 
 	has_attached_file :image, 
                     :styles => {medium: ["300x300>", :png], thumb: ["100x100>", :png]},
-                    :default_url => 'cordicare.s3.amazonaws.com',
-                    :path => ":attachment/:style/:normalized_file_name.:extension",
                     :storage => :s3,
                     :bucket => 'cordicare',
                     :s3_credentials => {:access_key_id => "AKIAJUHKFXT6EU5NGB3Q", :secret_access_key => "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"}
