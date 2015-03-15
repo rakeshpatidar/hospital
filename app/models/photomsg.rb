@@ -2,7 +2,12 @@ class Photomsg < ActiveRecord::Base
   #attr_accessible :photomsg, :image_data, :image
   attr_accessor :image_data
 
-	has_attached_file :image, styles: {medium: ["300x300>", :png], thumb: ["100x100>", :png]}
+	has_attached_file :image, 
+                    :styles => {medium: ["300x300>", :png], thumb: ["100x100>", :png]},
+                    :default_url => 'cordicare.s3.amazonaws.com',
+                    :storage => :s3,
+                    :bucket => 'cordicare',
+                    :s3_credentials => {:access_key_id => "AKIAJUHKFXT6EU5NGB3Q", :secret_access_key => "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"}
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 	before_save :decode_image_data
 
