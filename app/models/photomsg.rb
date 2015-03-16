@@ -9,7 +9,9 @@ class Photomsg < ActiveRecord::Base
                     
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 	before_save :decode_image_data
-
+def image_url
+    image.url(:original)
+    end
 	def decode_image_data
     # If image_data is present, it means that we were sent an image over
     # JSON and it needs to be decoded.  After decoding, the image is processed

@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 20150309125821) do
     t.datetime "updated_at",                   null: false
   end
 
-  create_table "photomsgs", primary_key: "photomsg_id", force: :cascade do |t|
+  create_table "photomsgs", force: :cascade do |t|
     t.integer  "physician",          limit: 4
     t.integer  "patient_id",         limit: 4
     t.string   "image_file_name",    limit: 255

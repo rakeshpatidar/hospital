@@ -445,11 +445,8 @@ def addpatientmsg      #new text message add api
         photomsglist[:data] = ''
         respond_with(photomsglist)     
       else
-        photomsglist = ActiveSupport::HashWithIndifferentAccess.new
-        photomsglist[:success] = 1
-        photomsglist[:msg] = 'Succesfully get data'
-        photomsglist[:data] = @photomsgs
-        respond_with(photomsglist)    
+        @photomsgs = Photomsg.where(:patient_id => params[:id])  #id of the patientid id
+   
       end 
   end
   def photo

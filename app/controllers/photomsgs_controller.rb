@@ -7,14 +7,16 @@ end
 
 def create
   @photomsg = Photomsg.new(photo_params)
-  @photomsg.patient_id = params[:id]   #set patient id
+  #@photomsg.patient_id = params[:id]   #set patient id
   if @photomsg.save
     respond_to do |format|
+      format.html { redirect_to(@photomsg, :notice => 'photomsg was successfully created.') }
       msg = { :success => 1, :msg => "data save Success!", :data => "" }
       format.json  { render :json => msg }
     end
   else
     respond_to do |format|
+      format.html { redirect_to(@photomsg, :notice => 'photomsg was fail to created.') }
       msg = { :success => 0, :msg => "data not save", :data => "" }
       format.json  { render :json => msg }
       
@@ -38,11 +40,12 @@ def destroy
  
 end
 def show
-  @photomsg = Photomsg.find(params[:id])
+ @photomsg = Photomsg.find(params[:id])
+      
 end 
 private
   def photo_params
-    params.permit(:image, :physician)  #id is patient id
+    params.permit(:image, :physician, :patient_id)  #id is patient id
   end
 
 end
