@@ -40,12 +40,11 @@ def destroy
  
 end
 def show
- @photomsg = Photomsg.find(params[:id])
-      
+  @photomsg = Photomsg.find(params[:id])
 end 
 private
   def photo_params
-    params.permit(:image, :physician, :patient_id)  #id is patient id
+    params.permit(:image, :physician, :patient_id)
   end
 
 end
