@@ -7,7 +7,7 @@ end
 
 def create
   @photomsg = Photomsg.new(photo_params)
-  #@photomsg.patient_id = params[:id]   #set patient id
+  @photomsg.patient_id = params[:id]   #set patient id
   if @photomsg.save
     respond_to do |format|
       format.html { redirect_to(@photomsg, :notice => 'photomsg was successfully created.') }
@@ -44,7 +44,7 @@ def show
 end 
 private
   def photo_params
-    params.permit(:image, :physician, :patient_id)
+    params.permit(:image, :physician)
   end
 
 end

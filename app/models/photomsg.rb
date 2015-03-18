@@ -25,4 +25,7 @@ def image_url
         self.image = data
     end
   end
+  def created_at=(val)
+  Date.strptime(val, "%d/%m/%Y") if val.present?
+end
 end
